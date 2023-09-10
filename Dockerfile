@@ -6,6 +6,13 @@ RUN apk add make
 WORKDIR /app
 COPY . . 
 
-RUN go fmt ./... && go vet ./... && go build ./...
+RUN make
+
+FROM docker.io/library/alpine:3.18 as runner
+WORKDIR /app
+
+COPY --from=builder /app/static/ ./static/
+COPY --from=builder /app/templates/ ./templates/
+COPY --from=builder /app/htmx .
 
 CMD ["/app/htmx"]
