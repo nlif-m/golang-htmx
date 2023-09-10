@@ -1,0 +1,14 @@
+<html>
+    <head>
+ <script src="/static/htmx.org@1.9.5"></script>
+  <!-- have a button POST a click via AJAX -->
+    </head>
+    <body>
+	<h1>Hello, {{.Name}}!</h1>
+	<button hx-post="/clicked" hx-swap="outerHTML" hx-target="#current-time">
+	    Click Me
+	</button>
+	<div id="current-time">
+	</div>
+    </body>
+</html>
